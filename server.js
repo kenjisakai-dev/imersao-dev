@@ -8,7 +8,7 @@ const corsOptions = {
 };
 
 const app = express();
-app.use(express.static('uploads')); // servir arquivos estaticos
+app.use(express.static('uploads'));
 
 app.use(express.json());
 
