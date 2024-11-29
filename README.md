@@ -157,10 +157,11 @@ Endpoint responsável por atualizar um post. O endpoint utiliza a imagem enviada
 
 #### **Respostas da Requisição**
 
-| **Código** | **Status**  | **Descrição**                     |
-| ---------- | ----------- | --------------------------------- |
-| 200        | Ok          | O endpoint foi obtido com sucesso |
-| 400        | Bad Request | Houve um erro ao atualizar o post |
+| **Código** | **Status**  | **Descrição**                             |
+| ---------- | ----------- | ----------------------------------------- |
+| 200        | Ok          | O endpoint foi obtido com sucesso         |
+| 400        | Bad Request | Houve um erro ao atualizar o post         |
+| 404        | Not Found   | Não foi encontrado o post do ID informado |
 
 #### **Resposta 200 do endoint**
 
