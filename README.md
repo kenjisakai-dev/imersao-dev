@@ -14,7 +14,7 @@ Este projeto foi desenvolvido como parte da Imersão DEV da Alura, com foco no b
     Utilizado para carregar variáveis de ambiente a partir de um arquivo `.env` para a aplicação
 
 -   **`express`**  
-    É um framework para Node.js utilizado que facilitar a criação da API
+    É um framework para Node.js utilizado para facilitar a criação da API
 
 -   **`mongodb`**  
     É uma biblioteca utilizada para permitir a interação com o banco de dados MongoDB
@@ -43,3 +43,133 @@ Este projeto foi desenvolvido como parte da Imersão DEV da Alura, com foco no b
     ```sh
     npm run dev
     ```
+
+## 🔛 Como consultar os endpoints
+
+### **Criar um novo post**
+
+`POST /posts`
+
+Endpoint responsável por criar um novo post enviando uma imagem no formato **PNG** através de um `form-data`. O endpoint utiliza a imagem enviada para gerar uma descrição e alt automaticamente utilizando a IA do Gemini.
+
+#### **Parâmetros da Requisição**
+
+| **Tipo**  | **Parâmetro** | **Descrição**          | **Obrigatório** |
+| --------- | ------------- | ---------------------- | --------------- |
+| form-data | `imagem`      | Arquivo no formato PNG | Sim             |
+
+#### **Respostas da Requisição**
+
+| **Código** | **Status**  | **Descrição**                 |
+| ---------- | ----------- | ----------------------------- |
+| 201        | Created     | O post foi criado com sucesso |
+| 400        | Bad Request | Houve um erro ao criar o post |
+
+#### **Resposta 201 do endoint**
+
+```json
+{
+    "acknowledged": true,
+    "insertedId": "6748f4350db76c22d403d63d"
+}
+```
+
+---
+
+### **Listar todos os posts**
+
+`GET /posts`
+
+Endpoint responsável por listar todos os posts.
+
+#### **Respostas da Requisição**
+
+| **Código** | **Status**  | **Descrição**                       |
+| ---------- | ----------- | ----------------------------------- |
+| 200        | Ok          | Os posts foram listados com sucesso |
+| 400        | Bad Request | Houve um erro ao listar os posts    |
+
+#### **Resposta 200 do endoint**
+
+```json
+[
+    {
+        "_id": "674a3e15975fda8af6f13cee",
+        "descricao": "Vale verdejante sob céu tempestuoso. Rio serpenteia pelas colinas ondulantes. Paisagem dramática e serena.\n",
+        "imgUrl": "http://localhost:3000/674a3e15975fda8af6f13cee.png",
+        "alt": "Aqui está uma sugestão de alt text em português do Brasil para a imagem, com no máximo 10 palavras:\n\n\"Vale verdejante com rio sinuoso sob céu tempestuoso.\"\n"
+    },
+    {
+        "_id": "674a3e24975fda8af6f13cef",
+        "descricao": "Nissan Skyline R34 GT-R cinza-escuro em alta velocidade em uma pista de corrida.",
+        "imgUrl": "http://localhost:3000/674a3e24975fda8af6f13cef.png",
+        "alt": "Aqui está uma sugestão para a alt text em português brasileiro com no máximo 10 palavras:\n\nNissan Skyline R34 GT-R em alta velocidade na pista.\n"
+    }
+]
+```
+
+---
+
+### **Obter um post**
+
+`GET /posts/:id`
+
+Endpoint responsável por obter um post.
+
+#### **Parâmetros da Requisição**
+
+| **Tipo**          | **Parâmetro** | **Descrição** | **Obrigatório** |
+| ----------------- | ------------- | ------------- | --------------- |
+| parâmetro de rota | `id`          | ID do post    | Sim             |
+
+#### **Respostas da Requisição**
+
+| **Código** | **Status**  | **Descrição**                         |
+| ---------- | ----------- | ------------------------------------- |
+| 200        | Ok          | O endpoint foi atualizado com sucesso |
+| 400        | Bad Request | Houve um erro ao obter o post         |
+
+#### **Resposta 200 do endoint**
+
+```json
+{
+    "_id": "674a3e24975fda8af6f13cef",
+    "descricao": "Nissan Skyline R34 GT-R cinza-escuro em alta velocidade em uma pista de corrida.",
+    "imgUrl": "http://localhost:3000/674a3e24975fda8af6f13cef.png",
+    "alt": "Aqui está uma sugestão para a alt text em português brasileiro com no máximo 10 palavras:\n\nNissan Skyline R34 GT-R em alta velocidade na pista.\n"
+}
+```
+
+---
+
+### **Atualizar um post**
+
+`PATCH /posts/:id`
+
+Endpoint responsável por atualizar um post. O endpoint utiliza a imagem enviada para gerar uma nova descrição e alt automaticamente utilizando a IA do Gemini.
+
+#### **Parâmetros da Requisição**
+
+| **Tipo**          | **Parâmetro** | **Descrição**          | **Obrigatório** |
+| ----------------- | ------------- | ---------------------- | --------------- |
+| parâmetro de rota | `id`          | ID do post             | Sim             |
+| form-data         | `imagem`      | Arquivo no formato PNG | Sim             |
+
+#### **Respostas da Requisição**
+
+| **Código** | **Status**  | **Descrição**                     |
+| ---------- | ----------- | --------------------------------- |
+| 200        | Ok          | O endpoint foi obtido com sucesso |
+| 400        | Bad Request | Houve um erro ao atualizar o post |
+
+#### **Resposta 200 do endoint**
+
+```json
+{
+    "acknowledged": true,
+    "modifiedCount": 1,
+    "upsertedId": null,
+    "upsertedCount": 0,
+    "matchedCount": 1
+}
+```
