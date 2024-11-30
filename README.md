@@ -126,7 +126,7 @@ Endpoint responsável por obter um post.
 
 | **Código** | **Status**  | **Descrição**                         |
 | ---------- | ----------- | ------------------------------------- |
-| 200        | Ok          | O endpoint foi atualizado com sucesso |
+| 200        | Ok          | O post foi obtido com sucesso     |
 | 400        | Bad Request | Houve um erro ao obter o post         |
 
 #### **Resposta 200 do endoint**
@@ -159,7 +159,7 @@ Endpoint responsável por atualizar um post. O endpoint utiliza a imagem enviada
 
 | **Código** | **Status**  | **Descrição**                             |
 | ---------- | ----------- | ----------------------------------------- |
-| 200        | Ok          | O endpoint foi obtido com sucesso         |
+| 200        | Ok          | O post foi obtido com sucesso         |
 | 400        | Bad Request | Houve um erro ao atualizar o post         |
 | 404        | Not Found   | Não foi encontrado o post do ID informado |
 
